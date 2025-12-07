@@ -10,7 +10,6 @@ const featuredItems = [
       '/images/makeup-pouch-1.jpg',
       '/images/makeup-pouch-2.jpg',
       '/images/makeup-pouch-3.jpg',
-      '/images/makeup-pouch-4.jpg',
     ],
     colors: [
       { name: 'Rose', hex: '#e8a8a8' },

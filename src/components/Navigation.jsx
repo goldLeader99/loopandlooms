@@ -86,7 +86,7 @@ export default function Navigation({ searchTerm, onSearchChange }) {
           <div className="search-wrapper">
             <input
               type="text"
-              placeholder="Search..."
+              placeholder="Search"
               value={searchTerm}
               onChange={handleSearchChange}
               className="nav-search"
