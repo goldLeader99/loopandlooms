@@ -141,6 +141,7 @@ export default function ProductCard({ item }) {
               onError={() => handleImageError(validImages.indexOf(activeImages[currentImageIndex]))}
               style={{ cursor: 'pointer' }}
             />
+            <div className="watermark">© Loop &amp; Looms</div>
             {activeImages.length > 1 && (
               <>
                 <button className={`img-nav prev ${showControls ? 'visible' : ''}`} onClick={prevImage}>‹</button>
@@ -206,6 +207,7 @@ export default function ProductCard({ item }) {
                     alt={item.title}
                     className="modal-image"
                   />
+                  <div className="watermark modal-watermark">© Loop &amp; Looms</div>
                   {activeImages.length > 1 && (
                     <>
                       <button className={`modal-nav prev ${showControls ? 'visible' : ''}`} onClick={prevImage}>‹</button>

@@ -2,6 +2,55 @@ import React from 'react';
 import ProductCard from './ProductCard';
 
 const featuredItems = [
+
+  {
+    title: 'Makeup Pouch',
+    description: 'Compact and cute crochet pouch perfect for storing cosmetics and beauty essentials on the go.',
+    images: [
+      '/images/makeup-pouch-1.jpg',
+      '/images/makeup-pouch-2.jpg',
+      '/images/makeup-pouch-3.jpg',
+      '/images/makeup-pouch-4.jpg',
+    ],
+    colors: [
+      { name: 'Rose', hex: '#e8a8a8' },
+      { name: 'Peach', hex: '#f0c8a8' },
+      { name: 'Lavender', hex: '#d8c8e8' }
+    ],
+    shipping: 'Ships in 3–5 days',
+    gradient: 'rose',
+  },
+  {
+    title: 'Air Pod Case',
+    description: 'Soft and protective crochet case designed to keep your AirPods safe and stylish.',
+    images: [
+      '/images/air-pod-case-1.jpg',
+      '/images/air-pod-case-2.jpg'
+    ],
+    colors: [
+      { name: 'Blush', hex: '#f5d5d0' },
+      { name: 'Sage', hex: '#c8dcc8' },
+      { name: 'Ivory', hex: '#f5f0e8' }
+    ],
+    shipping: 'Ships in 2–4 days',
+    gradient: 'mint',
+  },
+  {
+    title: 'Crochet Cable',
+    description: 'Cozy handmade crochet cable perfect for draping over furniture or staying warm and stylish.',
+    images: [
+      '/images/crochet-cable-1.jpg',
+      '/images/crochet-cable-2.jpg',
+      '/images/crochet-cable-3.jpg',
+    ],
+    colors: [
+      { name: 'Cream', hex: '#f5f0e8' },
+      { name: 'Gray', hex: '#b8b0a8' },
+      { name: 'Charcoal', hex: '#5a5a5a' }
+    ],
+    shipping: 'Ships in 6–8 days',
+    gradient: 'sage',
+  },
   {
     title: "Wallet & Clutches",
     description: 'Lightweight and durable crochet wallet with secure compartments for everyday use.',
@@ -16,8 +65,7 @@ const featuredItems = [
     ],
     shipping: 'Ships in 5–7 days',
     gradient: 'amber',
-  },
-  {
+  }, {
     title: 'Keychain',
     description: 'Charming handcrafted keychain with sturdy attachment, perfect for adding personality to your keys.',
     images: [],
@@ -39,42 +87,6 @@ const featuredItems = [
       { name: 'Petal', hex: '#e8b8c8' }
     ],
     shipping: 'Ships in 4–6 days',
-    gradient: 'sage',
-  },
-  {
-    title: 'Air Pod Case',
-    description: 'Soft and protective crochet case designed to keep your AirPods safe and stylish.',
-    images: [],
-    colors: [
-      { name: 'Blush', hex: '#f5d5d0' },
-      { name: 'Sage', hex: '#c8dcc8' },
-      { name: 'Ivory', hex: '#f5f0e8' }
-    ],
-    shipping: 'Ships in 2–4 days',
-    gradient: 'mint',
-  },
-  {
-    title: 'Makeup Pouch',
-    description: 'Compact and cute crochet pouch perfect for storing cosmetics and beauty essentials on the go.',
-    images: [],
-    colors: [
-      { name: 'Rose', hex: '#e8a8a8' },
-      { name: 'Peach', hex: '#f0c8a8' },
-      { name: 'Lavender', hex: '#d8c8e8' }
-    ],
-    shipping: 'Ships in 3–5 days',
-    gradient: 'rose',
-  },
-  {
-    title: 'Crochet Cable',
-    description: 'Cozy handmade crochet cable perfect for draping over furniture or staying warm and stylish.',
-    images: [],
-    colors: [
-      { name: 'Cream', hex: '#f5f0e8' },
-      { name: 'Gray', hex: '#b8b0a8' },
-      { name: 'Charcoal', hex: '#5a5a5a' }
-    ],
-    shipping: 'Ships in 6–8 days',
     gradient: 'sage',
   },
 ];
