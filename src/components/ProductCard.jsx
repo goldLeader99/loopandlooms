@@ -85,22 +85,34 @@ export default function ProductCard({ item }) {
   };
 
   const handleTouchEnd = (e) => {
-    setTouchEnd(e.changedTouches[0].clientX);
-    handleSwipe();
-  };
-
-  const handleSwipe = () => {
-    if (activeImages.length <= 1) return;
+    const newTouchEnd = e.changedTouches[0].clientX;
+    setTouchEnd(newTouchEnd);
     
-    const distance = touchStart - touchEnd;
+    // Calculate distance
+    const distance = touchStart - newTouchEnd;
     const isLeftSwipe = distance > 50;
     const isRightSwipe = distance < -50;
 
+    // Only change image if it's a real swipe (distance > 50px)
     if (isLeftSwipe) {
       nextImage();
     } else if (isRightSwipe) {
       prevImage();
     }
+    // Don't call handleSwipe - do swipe detection inline to prevent interference
+  };
+
+  const handleSwipe = () => {
+    // This function is now handled in handleTouchEnd
+  };
+
+  const handleImageClick = () => {
+    // Always open modal on click, regardless of swipe
+    // Reset touch state to prevent any interference
+    setTouchStart(0);
+    setTouchEnd(0);
+    setIsModalOpen(true);
+    setTimeout(() => showControlsTemporarily(), 0);
   };
 
   const renderStars = (rating) => {
@@ -133,11 +145,7 @@ export default function ProductCard({ item }) {
               src={activeImages[currentImageIndex]}
               alt={item.title}
               className="card-img"
-              onClick={() => {
-                setIsModalOpen(true);
-                // Trigger show controls after modal opens
-                setTimeout(() => showControlsTemporarily(), 0);
-              }}
+              onClick={handleImageClick}
               onError={() => handleImageError(validImages.indexOf(activeImages[currentImageIndex]))}
               style={{ cursor: 'pointer' }}
             />
