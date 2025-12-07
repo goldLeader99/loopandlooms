@@ -30,6 +30,16 @@ export default function ProductCard({ item }) {
     };
   }, [isModalOpen]);
 
+  // Initialize arrow visibility when modal opens
+  React.useEffect(() => {
+    if (isModalOpen) {
+      // Start with arrows hidden on desktop too
+      setShowControls(false);
+      // Show them briefly so user sees they're available
+      showControlsTemporarily();
+    }
+  }, [isModalOpen]);
+
   const handleImageError = (index) => {
     setFailedImages(prev => new Set(prev).add(index));
   };
@@ -115,8 +125,9 @@ export default function ProductCard({ item }) {
               alt={item.title}
               className="card-img"
               onClick={() => {
-                showControlsTemporarily();
                 setIsModalOpen(true);
+                // Trigger show controls after modal opens
+                setTimeout(() => showControlsTemporarily(), 0);
               }}
               onError={() => handleImageError(validImages.indexOf(activeImages[currentImageIndex]))}
               style={{ cursor: 'pointer' }}
@@ -202,6 +213,10 @@ export default function ProductCard({ item }) {
                   )}
                 </>
               )}
+            </div>
+            <div className="modal-info">
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
             </div>
           </div>
         </div>
