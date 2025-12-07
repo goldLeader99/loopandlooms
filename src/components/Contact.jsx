@@ -43,14 +43,6 @@ export default function Contact() {
     return spamKeywords.some(keyword => lowerText.includes(keyword));
   };
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     
@@ -62,7 +54,7 @@ export default function Contact() {
       return; // Pretend success to confuse bots
     }
 
-    // Rate limiting - prevent multiple submissions within 2 seconds
+    // Rate limiting - prevent rapid-fire submissions (bots often submit multiple times per second)
     const now = Date.now();
     if (now - lastSubmitTime < 2000) {
       setSubmitError('Please wait a moment before submitting again.');
