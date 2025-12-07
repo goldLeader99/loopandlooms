@@ -15,27 +15,18 @@ export default function ProductCard({ item }) {
     if (isModalOpen) {
       // Add class to body
       document.body.classList.add('modal-open');
-      // Prevent scrolling on body and html
+      // Just prevent overflow, don't fix position
       document.body.style.overflow = 'hidden';
-      document.body.style.position = 'fixed';
-      document.body.style.width = '100%';
-      document.documentElement.style.overflow = 'hidden';
     } else {
       // Remove class from body
       document.body.classList.remove('modal-open');
       // Restore scrolling
       document.body.style.overflow = 'unset';
-      document.body.style.position = 'unset';
-      document.body.style.width = 'unset';
-      document.documentElement.style.overflow = 'unset';
     }
     
     return () => {
       document.body.classList.remove('modal-open');
       document.body.style.overflow = 'unset';
-      document.body.style.position = 'unset';
-      document.body.style.width = 'unset';
-      document.documentElement.style.overflow = 'unset';
     };
   }, [isModalOpen]);
 

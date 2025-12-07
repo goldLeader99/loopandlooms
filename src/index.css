@@ -1158,12 +1158,10 @@ blockquote {
 /* Prevent background interaction when modal is open */
 body.modal-open {
   overflow: hidden !important;
-  position: fixed !important;
-  width: 100% !important;
 }
 
-body.modal-open > :not(.modal-overlay) {
-  pointer-events: none;
+body.modal-open > *:not(.modal-overlay) {
+  pointer-events: none !important;
 }.social-link:hover {
   color: #FD1D1D;
   transform: scale(1.15);
