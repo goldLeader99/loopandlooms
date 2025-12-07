@@ -1,50 +1,31 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 
 export default function MobileImageModal({ isOpen, activeImages, currentImageIndex, onClose, onPrevImage, onNextImage }) {
   const [touchStart, setTouchStart] = React.useState(0);
   const [touchEnd, setTouchEnd] = React.useState(0);
   const [showControls, setShowControls] = React.useState(false);
   const controlsTimeoutRef = React.useRef(null);
-  const scrollPosRef = React.useRef(0);
 
   React.useEffect(() => {
     if (isOpen) {
-      // Save scroll position
-      scrollPosRef.current = window.scrollY;
-      
-      // Prevent scroll
-      document.documentElement.style.overflow = 'hidden';
+      // Just prevent scroll with simple overflow
       document.body.style.overflow = 'hidden';
-      document.documentElement.style.position = 'fixed';
-      document.documentElement.style.width = '100%';
-      document.documentElement.style.height = '100%';
+      document.body.style.position = 'fixed';
       document.body.style.width = '100%';
-      document.body.style.height = '100%';
       
-      // Show controls briefly
       showControlsTemporarily();
     } else {
       // Restore scroll
-      document.documentElement.style.overflow = 'unset';
-      document.body.style.overflow = 'unset';
-      document.documentElement.style.position = 'unset';
-      document.documentElement.style.width = 'unset';
-      document.documentElement.style.height = 'unset';
-      document.body.style.width = 'unset';
-      document.body.style.height = 'unset';
-      
-      // Restore scroll position
-      window.scrollTo(0, scrollPosRef.current);
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
     }
 
     return () => {
-      document.documentElement.style.overflow = 'unset';
-      document.body.style.overflow = 'unset';
-      document.documentElement.style.position = 'unset';
-      document.documentElement.style.width = 'unset';
-      document.documentElement.style.height = 'unset';
-      document.body.style.width = 'unset';
-      document.body.style.height = 'unset';
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
     };
   }, [isOpen]);
 
@@ -74,20 +55,18 @@ export default function MobileImageModal({ isOpen, activeImages, currentImageInd
     const threshold = 50;
 
     if (distance > threshold) {
-      // Swipe left - next image
       onNextImage();
       showControlsTemporarily();
     }
     if (distance < -threshold) {
-      // Swipe right - prev image
       onPrevImage();
       showControlsTemporarily();
     }
   };
 
-  if (!isOpen) return null;
+  if (!isOpen || activeImages.length === 0) return null;
 
-  return (
+  const modalContent = (
     <div 
       className="mobile-modal-overlay"
       onClick={onClose}
@@ -105,13 +84,11 @@ export default function MobileImageModal({ isOpen, activeImages, currentImageInd
         onTouchEnd={handleTouchEnd}
         onClick={(e) => e.stopPropagation()}
       >
-        {activeImages.length > 0 && (
-          <img
-            src={activeImages[currentImageIndex]}
-            alt="Product"
-            className="mobile-modal-image"
-          />
-        )}
+        <img
+          src={activeImages[currentImageIndex]}
+          alt="Product"
+          className="mobile-modal-image"
+        />
 
         {activeImages.length > 1 && (
           <>
@@ -141,9 +118,6 @@ export default function MobileImageModal({ isOpen, activeImages, currentImageInd
                 <span
                   key={idx}
                   className={`indicator ${idx === currentImageIndex ? 'active' : ''}`}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                  }}
                 />
               ))}
             </div>
@@ -152,4 +126,7 @@ export default function MobileImageModal({ isOpen, activeImages, currentImageInd
       </div>
     </div>
   );
+
+  // Render directly to document.body to ensure it's on top
+  return ReactDOM.createPortal(modalContent, document.body);
 }

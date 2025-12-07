@@ -88,6 +88,14 @@ export default function Featured({ searchTerm }) {
     item.description.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  // Reset carousel position when search changes
+  React.useEffect(() => {
+    if (cardsContainerRef.current) {
+      cardsContainerRef.current.scrollLeft = 0;
+      setCurrentCardIndex(0);
+    }
+  }, [searchTerm]);
+
   const scrollToCard = (index) => {
     if (cardsContainerRef.current) {
       const cardWidth = cardsContainerRef.current.children[0]?.offsetWidth || 0;
