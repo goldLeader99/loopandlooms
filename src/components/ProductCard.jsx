@@ -1,34 +1,43 @@
 import React from 'react';
+import MobileImageModal from './MobileImageModal';
 
 export default function ProductCard({ item }) {
   const [validImages] = React.useState(item.images || []);
   const [currentImageIndex, setCurrentImageIndex] = React.useState(0);
   const [failedImages, setFailedImages] = React.useState(new Set());
   const [isModalOpen, setIsModalOpen] = React.useState(false);
+  const [isMobile, setIsMobile] = React.useState(window.innerWidth < 641);
   const [touchStart, setTouchStart] = React.useState(0);
   const [touchEnd, setTouchEnd] = React.useState(0);
   const [showControls, setShowControls] = React.useState(false);
   const controlsTimeoutRef = React.useRef(null);
 
-  // Prevent background scroll when modal is open
+  // Detect screen size
   React.useEffect(() => {
-    if (isModalOpen) {
-      // Add class to body
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 641);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Prevent background scroll when modal is open (desktop only)
+  React.useEffect(() => {
+    if (!isMobile && isModalOpen) {
       document.body.classList.add('modal-open');
-      // Just prevent overflow, don't fix position
       document.body.style.overflow = 'hidden';
-    } else {
-      // Remove class from body
+    } else if (!isMobile) {
       document.body.classList.remove('modal-open');
-      // Restore scrolling
       document.body.style.overflow = 'unset';
     }
     
     return () => {
-      document.body.classList.remove('modal-open');
-      document.body.style.overflow = 'unset';
+      if (!isMobile) {
+        document.body.classList.remove('modal-open');
+        document.body.style.overflow = 'unset';
+      }
     };
-  }, [isModalOpen]);
+  }, [isModalOpen, isMobile]);
 
   // Initialize arrow visibility when modal opens
   React.useEffect(() => {
@@ -180,7 +189,8 @@ export default function ProductCard({ item }) {
         <p className="shipping">{item.shipping}</p>
       </div>
 
-      {isModalOpen && (
+      {/* Desktop Modal */}
+      {!isMobile && isModalOpen && (
         <div className="modal-overlay" onClick={() => setIsModalOpen(false)}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
             <button className="modal-close" onClick={() => setIsModalOpen(false)}>×</button>
@@ -220,6 +230,18 @@ export default function ProductCard({ item }) {
             </div>
           </div>
         </div>
+      )}
+
+      {/* Mobile Modal */}
+      {isMobile && (
+        <MobileImageModal
+          isOpen={isModalOpen}
+          activeImages={activeImages}
+          currentImageIndex={currentImageIndex}
+          onClose={() => setIsModalOpen(false)}
+          onPrevImage={prevImage}
+          onNextImage={nextImage}
+        />
       )}
     </article>
   );
