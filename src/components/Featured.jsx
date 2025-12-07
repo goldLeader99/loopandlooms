@@ -7,8 +7,7 @@ const featuredItems = [
     description: 'Lightweight and durable crochet wallet with secure compartments for everyday use.',
     images: [
       '/images/wallet-1.jpg',
-      '/images/wallet-2.jpg',
-      '/images/wallet-3.jpg'
+      '/images/wallet-2.jpg'
     ],
     colors: [
       { name: 'Sea Glass', hex: '#a8d5d5' },
@@ -21,10 +20,7 @@ const featuredItems = [
   {
     title: 'Keychain',
     description: 'Charming handcrafted keychain with sturdy attachment, perfect for adding personality to your keys.',
-    images: [
-      '/images/keychain-1.jpg',
-      '/images/keychain-2.jpg'
-    ],
+    images: [],
     colors: [
       { name: 'Clay', hex: '#c97a6e' },
       { name: 'Linen', hex: '#d9c8b8' },
@@ -36,10 +32,7 @@ const featuredItems = [
   {
     title: 'Car Decor',
     description: 'Cozy and stylish crochet car decor to personalize your vehicle with handmade charm.',
-    images: [
-      '/images/car-decor-1.jpg',
-      '/images/car-decor-2.jpg'
-    ],
+    images: [],
     colors: [
       { name: 'Haze', hex: '#b8a8a0' },
       { name: 'Butter', hex: '#f4e4b8' },
@@ -51,10 +44,7 @@ const featuredItems = [
   {
     title: 'Air Pod Case',
     description: 'Soft and protective crochet case designed to keep your AirPods safe and stylish.',
-    images: [
-      '/images/airpod-case-1.jpg',
-      '/images/airpod-case-2.jpg'
-    ],
+    images: [],
     colors: [
       { name: 'Blush', hex: '#f5d5d0' },
       { name: 'Sage', hex: '#c8dcc8' },
@@ -66,10 +56,7 @@ const featuredItems = [
   {
     title: 'Makeup Pouch',
     description: 'Compact and cute crochet pouch perfect for storing cosmetics and beauty essentials on the go.',
-    images: [
-      '/images/makeup-pouch-1.jpg',
-      '/images/makeup-pouch-2.jpg'
-    ],
+    images: [],
     colors: [
       { name: 'Rose', hex: '#e8a8a8' },
       { name: 'Peach', hex: '#f0c8a8' },
@@ -81,11 +68,7 @@ const featuredItems = [
   {
     title: 'Crochet Cable',
     description: 'Cozy handmade crochet cable perfect for draping over furniture or staying warm and stylish.',
-    images: [
-      '/images/cable-1.jpg',
-      '/images/cable-2.jpg',
-      '/images/cable-3.jpg'
-    ],
+    images: [],
     colors: [
       { name: 'Cream', hex: '#f5f0e8' },
       { name: 'Gray', hex: '#b8b0a8' },

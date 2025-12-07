@@ -10,6 +10,19 @@ export default function ProductCard({ item }) {
   const [showControls, setShowControls] = React.useState(false);
   const controlsTimeoutRef = React.useRef(null);
 
+  // Prevent background scroll when modal is open
+  React.useEffect(() => {
+    if (isModalOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isModalOpen]);
+
   const handleImageError = (index) => {
     setFailedImages(prev => new Set(prev).add(index));
   };
@@ -82,74 +95,72 @@ export default function ProductCard({ item }) {
   };
 
   return (
-    <>
-      <article className="card" key={item.title}>
-        <div
-          className="card-img-container"
-          onTouchStart={handleTouchStart}
-          onTouchEnd={handleTouchEnd}
-        >
-          {activeImages.length > 0 ? (
-            <>
-              <img
-                src={activeImages[currentImageIndex]}
-                alt={item.title}
-                className="card-img"
-                onClick={() => {
-                  showControlsTemporarily();
-                  setIsModalOpen(true);
-                }}
-                onError={() => handleImageError(validImages.indexOf(activeImages[currentImageIndex]))}
-                style={{ cursor: 'pointer' }}
-              />
-              {activeImages.length > 1 && (
-                <>
-                  <button className={`img-nav prev ${showControls ? 'visible' : ''}`} onClick={prevImage}>‹</button>
-                  <button className={`img-nav next ${showControls ? 'visible' : ''}`} onClick={nextImage}>›</button>
-                  <div className="img-indicators">
-                    {activeImages.map((_, idx) => (
-                      <span
-                        key={idx}
-                        className={`indicator ${idx === currentImageIndex ? 'active' : ''}`}
-                        onClick={() => setCurrentImageIndex(idx)}
-                      />
-                    ))}
-                  </div>
-                </>
-              )}
-            </>
-          ) : (
-            <div className={`card-img gradient ${item.gradient}`} aria-hidden="true" />
-          )}
-        </div>
-
-        <div className="card-body">
-          <h3>{item.title}</h3>
-          <p>{item.description}</p>
-
-          {item.rating && (
-            <div className="rating-section">
-              <div className="stars">
-                {renderStars(item.rating)}
-              </div>
-              <span className="rating-text">{item.rating} ({item.reviews} reviews)</span>
-            </div>
-          )}
-
-          <div className="colors-section">
-            <p className="eyebrow">Available colors</p>
-            <div className="color-swatches">
-              {item.colors.map((color) => (
-                <div key={color.name} className="color-swatch">
-                  <div className="swatch-dot" style={{ backgroundColor: color.hex }}></div>
-                  <span className="swatch-label">{color.name}</span>
+    <article className="card" key={item.title}>
+      <div
+        className="card-img-container"
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+      >
+        {activeImages.length > 0 ? (
+          <>
+            <img
+              src={activeImages[currentImageIndex]}
+              alt={item.title}
+              className="card-img"
+              onClick={() => {
+                showControlsTemporarily();
+                setIsModalOpen(true);
+              }}
+              onError={() => handleImageError(validImages.indexOf(activeImages[currentImageIndex]))}
+              style={{ cursor: 'pointer' }}
+            />
+            {activeImages.length > 1 && (
+              <>
+                <button className={`img-nav prev ${showControls ? 'visible' : ''}`} onClick={prevImage}>‹</button>
+                <button className={`img-nav next ${showControls ? 'visible' : ''}`} onClick={nextImage}>›</button>
+                <div className="img-indicators">
+                  {activeImages.map((_, idx) => (
+                    <span
+                      key={idx}
+                      className={`indicator ${idx === currentImageIndex ? 'active' : ''}`}
+                      onClick={() => setCurrentImageIndex(idx)}
+                    />
+                  ))}
                 </div>
-              ))}
+              </>
+            )}
+          </>
+        ) : (
+          <div className={`card-img gradient ${item.gradient}`} aria-hidden="true" />
+        )}
+      </div>
+
+      <div className="card-body">
+        <h3>{item.title}</h3>
+        <p>{item.description}</p>
+
+        {item.rating && (
+          <div className="rating-section">
+            <div className="stars">
+              {renderStars(item.rating)}
             </div>
+            <span className="rating-text">{item.rating} ({item.reviews} reviews)</span>
           </div>
-          <p className="shipping">{item.shipping}</p>
+        )}
+
+        <div className="colors-section">
+          <p className="eyebrow">Available colors</p>
+          <div className="color-swatches">
+            {item.colors.map((color) => (
+              <div key={color.name} className="color-swatch">
+                <div className="swatch-dot" style={{ backgroundColor: color.hex }}></div>
+                <span className="swatch-label">{color.name}</span>
+              </div>
+            ))}
+          </div>
         </div>
-      </article>
+        <p className="shipping">{item.shipping}</p>
+      </div>
 
       {isModalOpen && (
         <div className="modal-overlay" onClick={() => setIsModalOpen(false)}>
@@ -185,13 +196,9 @@ export default function ProductCard({ item }) {
                 </>
               )}
             </div>
-            <div className="modal-info">
-              <h3>{item.title}</h3>
-              <p>{item.description}</p>
-            </div>
           </div>
         </div>
       )}
-    </>
+    </article>
   );
 }
