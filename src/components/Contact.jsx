@@ -43,24 +43,6 @@ export default function Contact() {
     return spamKeywords.some(keyword => lowerText.includes(keyword));
   };
 
-  // Check if description contains legitimate order keywords
-  const hasValidOrderKeywords = (text) => {
-    if (!text) return false;
-    
-    const validKeywords = [
-      'crochet',
-      'color',
-      'colour',
-      'item',
-      'items',
-      'piece',
-      'pieces'
-    ];
-    
-    const lowerText = text.toLowerCase();
-    return validKeywords.some(keyword => lowerText.includes(keyword));
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     
@@ -96,12 +78,6 @@ export default function Contact() {
     // Spam keyword detection
     if (isLikelySpam(formData.name) || isLikelySpam(formData.request)) {
       setSubmitError('Your submission contains invalid content. Please try again.');
-      return;
-    }
-
-    // Check if request contains legitimate order keywords (crochet, color, items, etc.)
-    if (!hasValidOrderKeywords(formData.request)) {
-      setSubmitError('Please describe your crochet order including details like color, items, or quantity.');
       return;
     }
 
