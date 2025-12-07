@@ -5,33 +5,46 @@ export default function MobileImageModal({ isOpen, activeImages, currentImageInd
   const [touchEnd, setTouchEnd] = React.useState(0);
   const [showControls, setShowControls] = React.useState(false);
   const controlsTimeoutRef = React.useRef(null);
+  const scrollPosRef = React.useRef(0);
 
   React.useEffect(() => {
     if (isOpen) {
-      // Prevent body scroll and interaction
-      document.body.style.position = 'fixed';
-      document.body.style.width = '100%';
+      // Save scroll position
+      scrollPosRef.current = window.scrollY;
+      
+      // Prevent scroll
+      document.documentElement.style.overflow = 'hidden';
       document.body.style.overflow = 'hidden';
-      document.body.style.touchAction = 'none';
-      document.body.style.overscrollBehavior = 'contain';
+      document.documentElement.style.position = 'fixed';
+      document.documentElement.style.width = '100%';
+      document.documentElement.style.height = '100%';
+      document.body.style.width = '100%';
+      document.body.style.height = '100%';
       
       // Show controls briefly
       showControlsTemporarily();
     } else {
-      // Restore normal scrolling
-      document.body.style.position = 'unset';
-      document.body.style.width = 'unset';
+      // Restore scroll
+      document.documentElement.style.overflow = 'unset';
       document.body.style.overflow = 'unset';
-      document.body.style.touchAction = 'unset';
-      document.body.style.overscrollBehavior = 'unset';
+      document.documentElement.style.position = 'unset';
+      document.documentElement.style.width = 'unset';
+      document.documentElement.style.height = 'unset';
+      document.body.style.width = 'unset';
+      document.body.style.height = 'unset';
+      
+      // Restore scroll position
+      window.scrollTo(0, scrollPosRef.current);
     }
 
     return () => {
-      document.body.style.position = 'unset';
-      document.body.style.width = 'unset';
+      document.documentElement.style.overflow = 'unset';
       document.body.style.overflow = 'unset';
-      document.body.style.touchAction = 'unset';
-      document.body.style.overscrollBehavior = 'unset';
+      document.documentElement.style.position = 'unset';
+      document.documentElement.style.width = 'unset';
+      document.documentElement.style.height = 'unset';
+      document.body.style.width = 'unset';
+      document.body.style.height = 'unset';
     };
   }, [isOpen]);
 
