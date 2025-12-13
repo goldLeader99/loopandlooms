@@ -820,6 +820,12 @@ blockquote {
   align-items: center;
   gap: 6px;
   cursor: pointer;
+  outline: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  caret-color: transparent;
 }
 
 .swatch-dot {

@@ -7,14 +7,14 @@ const featuredItems = [
     title: 'Makeup Pouch',
     description: 'Compact and cute crochet pouch perfect for storing cosmetics and beauty essentials on the go.',
     images: [
-      '/images/makeup-pouch-1.jpg',
-      '/images/makeup-pouch-2.jpg',
-      '/images/makeup-pouch-3.jpg',
+      '/images/makeupPouch/makeup-pouch-1.jpg',
+      '/images/makeupPouch/makeup-pouch-2.jpg',
+      '/images/makeupPouch/makeup-pouch-3.jpg',
     ],
     colors: [
-      { name: 'Rose', hex: '#e8a8a8' },
-      { name: 'Peach', hex: '#f0c8a8' },
-      { name: 'Lavender', hex: '#d8c8e8' }
+      { hex: '#e8a8a8' },
+      { hex: '#f0c8a8' },
+      { hex: '#d8c8e8' }
     ],
     shipping: 'Ships in 3–5 days',
     gradient: 'rose',
@@ -23,55 +23,99 @@ const featuredItems = [
     title: 'Air Pod Case',
     description: 'Soft and protective crochet case designed to keep your AirPods safe and stylish.',
     images: [
-      '/images/air-pod-case-1.jpg',
-      '/images/air-pod-case-2.jpg'
+      '/images/airpodcase/air-pod-case-1.jpg',
+      '/images/airpodcase/air-pod-case-2.jpg',
+      '/images/airpodcase/air-pod-case-3.jpg',
+      '/images/airpodcase/air-pod-case-4.jpg',
     ],
     colors: [
-      { name: 'Blush', hex: '#f5d5d0' },
-      { name: 'Sage', hex: '#c8dcc8' },
-      { name: 'Ivory', hex: '#f5f0e8' }
+      { hex: '#f5d5d0', imageIndices: [] },
+      { hex: '#c8dcc8', imageIndices: [] },
+      { hex: '#f5f0e8', imageIndices: [] },
+      { hex: '#000000', imageIndices: [0, 1] },
+      { hex: 'split', imageIndices: [2, 3], gradient: 'linear-gradient(180deg, #9933cc 50%, #d8c8e8 50%)' }
     ],
     shipping: 'Ships in 2–4 days',
     gradient: 'mint',
   },
   {
+    title: 'Bunny Pocket',
+    description: 'Adorable handcrafted bunny-shaped pocket, perfect for storing small items with a cute touch.',
+    images: [
+      '/images/bunnyPocket/bunny-pocket-1.jpg',
+      '/images/bunnyPocket/bunny-pocket-2.jpg',
+      '/images/bunnyPocket/bunny-pocket-3.jpg',
+      '/images/bunnyPocket/bunny-pocket-4.jpg',
+    ],
+    colors: [
+      { hex: '#ffffff', imageIndices: [1, 2] },
+      { hex: '#d9c8b8', imageIndices: [0] },
+      { hex: '#a9a9a9' },
+      { hex: '#98ff98' }
+    ],
+    shipping: 'Ships in 3–5 days',
+    gradient: 'rose',
+  },
+
+  {
+    title: "Men's Wallet",
+    description: 'Lightweight and durable crochet wallet with secure compartments for everyday use.',
+    images: [
+      '/images/mensWallet/wallet-1.jpg',
+      '/images/mensWallet/wallet-2.jpg',
+      '/images/mensWallet/wallet-3.jpg',
+      '/images/mensWallet/wallet-4.jpg',
+      /*'/images/mensWallet/wallet-5.jpg',
+      '/images/mensWallet/wallet-6.jpg' */
+    ],
+    colors: [
+      { hex: '#a8d5d5' },
+      { hex: '#a89a8a' },
+      { hex: '#c8c8c8' }
+    ],
+    shipping: 'Ships in 5–7 days',
+    gradient: 'amber',
+  },
+  {
+    title: 'Beauty Clutch',
+    description: 'Elegant handcrafted beauty clutch perfect for organizing and carrying your cosmetics in style.',
+    images: [
+      '/images/clutch/beauty-clutch-1.jpg',
+      '/images/clutch/beauty-clutch-2.jpg',
+    ],
+    colors: [
+      { hex: '#d4a574',  },
+      { hex: '#8b6f47', imageIndices: [] },
+      { hex: '#e8d5c4', imageIndices: [] },
+      { hex: '#e0f2e6', imageIndices: [0, 1]} 
+    ],
+    shipping: 'Ships in 3–5 days',
+    gradient: 'amber',
+  },
+  {
     title: 'Crochet Cable',
     description: 'Cozy handmade crochet cable perfect for draping over furniture or staying warm and stylish.',
     images: [
-      '/images/crochet-cable-1.jpg',
-      '/images/crochet-cable-2.jpg',
-      '/images/crochet-cable-3.jpg',
+      '/images/cable/crochet-cable-1.jpg',
+      '/images/cable/crochet-cable-2.jpg',
+      '/images/cable/crochet-cable-3.jpg',
     ],
     colors: [
-      { name: 'Cream', hex: '#f5f0e8' },
-      { name: 'Gray', hex: '#b8b0a8' },
-      { name: 'Charcoal', hex: '#5a5a5a' }
+      { hex: '#f5f0e8' },
+      { hex: '#b8b0a8' },
+      { hex: '#5a5a5a' }
     ],
     shipping: 'Ships in 6–8 days',
     gradient: 'sage',
   },
   {
-    title: "Wallet & Clutches",
-    description: 'Lightweight and durable crochet wallet with secure compartments for everyday use.',
-    images: [
-      '/images/wallet-1.jpg',
-      '/images/wallet-2.jpg'
-    ],
-    colors: [
-      { name: 'Sea Glass', hex: '#a8d5d5' },
-      { name: 'Driftwood', hex: '#a89a8a' },
-      { name: 'Mist', hex: '#c8c8c8' }
-    ],
-    shipping: 'Ships in 5–7 days',
-    gradient: 'amber',
-  }, {
     title: 'Keychain',
     description: 'Charming handcrafted keychain with sturdy attachment, perfect for adding personality to your keys.',
     images: [],
     colors: [
-      { name: 'Clay', hex: '#c97a6e' },
-      { name: 'Linen', hex: '#d9c8b8' },
-      { name: 'Graphite', hex: '#5a5a5a' }
+      { hex: '#c97a6e' },
+      { hex: '#d9c8b8' },
+      { hex: '#5a5a5a' }
     ],
     shipping: 'Ships in 3–5 days',
     gradient: 'blush',
@@ -81,9 +125,9 @@ const featuredItems = [
     description: 'Cozy and stylish crochet car decor to personalize your vehicle with handmade charm.',
     images: [],
     colors: [
-      { name: 'Haze', hex: '#b8a8a0' },
-      { name: 'Butter', hex: '#f4e4b8' },
-      { name: 'Petal', hex: '#e8b8c8' }
+      { hex: '#b8a8a0' },
+      { hex: '#f4e4b8' },
+      { hex: '#e8b8c8' }
     ],
     shipping: 'Ships in 4–6 days',
     gradient: 'sage',

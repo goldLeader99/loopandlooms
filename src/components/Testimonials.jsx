@@ -2,14 +2,14 @@ import React from 'react';
 
 const testimonials = [
   {
-    quote: '"The Cloudline blanket is so soft and weighty—it turned our reading nook into a retreat."',
-    person: '— Avery M.',
-    image: '/images/testimonial-1.jpg',
+    quote: '"Beautiful handmade pouch. Good quality wool and very neat stitching. I like the look and feel of it. I use it to store my cosmetics and it fits more than I expected. Super happy with this purchase!!."',
+    person: '— Nive.',
+    image: '/images/testimonial/testimonial-1.jpg',
   },
-  {
-    quote: '"I gifted the Mariner\'s Wrap to my mom and she wears it every evening. Beautiful drape and stitch work."',
-    person: '— Priya K.',
-    image: '/images/testimonial-2.jpg',
+    {
+    quote: '"Hi Bavi, thank you for the beautifully made pouch.. the stitching is neat and the pattern is gorgeous. The bag is durable stylish and perfect for my everyday use as a makeup pouch. Thanks again 😊😊😍"',
+    person: '— Pooja',
+    image: '/images/testimonial/testimonial-2.jpg',
   },
 ];
 

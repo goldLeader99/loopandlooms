@@ -10,7 +10,10 @@ export default function ProductCard({ item }) {
   const [touchStart, setTouchStart] = React.useState(0);
   const [touchEnd, setTouchEnd] = React.useState(0);
   const [showControls, setShowControls] = React.useState(false);
+  const [selectedColorIndex, setSelectedColorIndex] = React.useState(null);
+  const [showCustomOrderMessage, setShowCustomOrderMessage] = React.useState(false);
   const controlsTimeoutRef = React.useRef(null);
+  const customOrderTimeoutRef = React.useRef(null);
 
   // Detect screen size
   React.useEffect(() => {
@@ -51,6 +54,26 @@ export default function ProductCard({ item }) {
 
   const handleImageError = (index) => {
     setFailedImages(prev => new Set(prev).add(index));
+  };
+
+  const handleColorClick = (color, index) => {
+    setSelectedColorIndex(index);
+    
+    // Navigate to first image of this color without restricting carousel
+    if (color.imageIndices && color.imageIndices.length > 0) {
+      // Navigate to the first image of this color
+      setCurrentImageIndex(color.imageIndices[0]);
+      setShowCustomOrderMessage(false);
+    } else {
+      // No images for this color
+      setShowCustomOrderMessage(true);
+      if (customOrderTimeoutRef.current) {
+        clearTimeout(customOrderTimeoutRef.current);
+      }
+      customOrderTimeoutRef.current = setTimeout(() => {
+        setShowCustomOrderMessage(false);
+      }, 3000);
+    }
   };
 
   const activeImages = validImages.filter((_, idx) => !failedImages.has(idx));
@@ -187,10 +210,16 @@ export default function ProductCard({ item }) {
         <div className="colors-section">
           <p className="eyebrow">Available colors</p>
           <div className="color-swatches">
-            {item.colors.map((color) => (
-              <div key={color.name} className="color-swatch">
-                <div className="swatch-dot" style={{ backgroundColor: color.hex }}></div>
-                <span className="swatch-label">{color.name}</span>
+            {item.colors.map((color, index) => (
+              <div key={index} className="color-swatch" onClick={() => handleColorClick(color, index)} style={{ cursor: 'pointer', position: 'relative' }}>
+                <div 
+                  className="swatch-dot" 
+                  style={{ 
+                    background: color.gradient || color.hex,
+                    border: selectedColorIndex === index ? '2px solid #333' : '1px solid #ccc'
+                  }}
+                ></div>
+                {showCustomOrderMessage && selectedColorIndex === index && (!color.imageIndices || color.imageIndices.length === 0) && <span className="custom-order-badge">custom order only</span>}
               </div>
             ))}
           </div>
