@@ -180,7 +180,7 @@ export default function Contact() {
               autoComplete="off"
             />
 
-            <label htmlFor="request">What are you dreaming up?</label>
+            <label htmlFor="request">Order Details</label>
             <textarea 
               id="request" 
               name="request" 

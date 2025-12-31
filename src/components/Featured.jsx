@@ -3,6 +3,25 @@ import ProductCard from './ProductCard';
 
 const featuredItems = [
 
+    {
+    title: 'Tote Bag',
+    description: 'Spacious and stylish handcrafted tote bag perfect for everyday use, shopping, or travel.',
+    images: [
+      '/images/toteBag/tote-bag-1.0.jpg',
+      '/images/toteBag/tote-bag-1.1.jpg',
+      '/images/toteBag/tote-bag-1.2.jpg',
+      '/images/toteBag/tote-bag-2.0.jpg',
+      '/images/toteBag/tote-bag-2.1.jpg',
+      '/images/toteBag/tote-bag-2.2.jpg',
+    ],
+    colors: [
+      { hex: '#ffffff',  imageIndices: [0, 1, 2] },
+      { hex: '#d9c8b8', imageIndices: [3, 4, 5]},
+      { hex: '#8b7a6f'}
+    ],
+    shipping: 'Ships in 5–7 days',
+    gradient: 'amber',
+  },
   {
     title: 'Makeup Pouch',
     description: 'Compact and cute crochet pouch perfect for storing cosmetics and beauty essentials on the go.',
@@ -111,7 +130,11 @@ const featuredItems = [
   {
     title: 'Keychain',
     description: 'Charming handcrafted keychain with sturdy attachment, perfect for adding personality to your keys.',
-    images: [],
+    images: [
+      '/images/keychain/keychain-1.jpg',
+      '/images/keychain/keychain-2.jpg',
+      '/images/keychain/keychain-3.jpg',
+    ],
     colors: [
       { hex: '#c97a6e' },
       { hex: '#d9c8b8' },
